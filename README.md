@@ -1,16 +1,26 @@
-# test_app
+Changes you need for authentication firebase -
 
-A new Flutter project.
 
-## Getting Started
+1- Create Project in firebase console and dowload google_service.json file and located in android/app.
+2-  in android/app - build.gradle.kts add -
+ -  plugins {
+    id("com.android.application")
+    id("kotlin-android")
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id("dev.flutter.flutter-gradle-plugin")
+    id("com.google.gms.google-services")
+ }
 
-This project is a starting point for a Flutter application.
+3- In AndroidManifest file add in application - 
 
-A few resources to get you started if this is your first Flutter project:
+ <meta-data
+        android:name="com.google.firebase.messaging.default_notification_channel_id"
+        android:value="default_channel_id" />
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+4 - In android build.gradle.kts add - 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.2.0") // or your current version
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24") // match your Kotlin version
+        classpath("com.google.gms:google-services:4.4.2") // ✅ Firebase plugin
+    }
